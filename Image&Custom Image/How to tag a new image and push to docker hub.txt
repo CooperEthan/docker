@@ -1,0 +1,5 @@
+C:\Users\HIDIR\docker\dockerfile-assignment-1 (main -> origin)
+λ docker tag test cooperethan/test-node
+
+C:\Users\HIDIR\docker\dockerfile-assignment-1 (main -> origin)
+λ docker push cooperethan/test-node

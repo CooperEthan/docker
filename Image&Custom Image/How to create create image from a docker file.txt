@@ -1,0 +1,58 @@
+cd into file first. then vim Dockerfile
+
+and create the Docker file accordingly
+
+save and exit the vim file ---->  esc : wq enter 
+
+
+C:\Users\HIDIR\docker\dockerfile-assignment-1 (main -> origin)
+λ docker image build -t test .
+[+] Building 2.4s (13/13) FINISHED
+ => [internal] load build definition from Dockerfile          0.1s
+ => => transferring dockerfile: 2.93kB                        0.1s
+ => [internal] load .dockerignore                             0.1s
+ => => transferring context: 35B                              0.0s
+ => [internal] load metadata for docker.io/library/node:6-al  1.7s
+ => [internal] load build context                             0.1s
+ => => transferring context: 751B                             0.0s
+ => [1/8] FROM docker.io/library/node:6-alpine@sha256:172582  0.0s
+ => CACHED [2/8] RUN apk add --update tini                    0.0s
+ => CACHED [3/8] RUN mkdir -p /usr/src/app                    0.0s
+ => CACHED [4/8] WORKDIR /usr/src/app                         0.0s
+ => CACHED [5/8] COPY package.json package.json               0.0s
+ => CACHED [6/8] RUN npm install                              0.0s
+ => CACHED [7/8] RUN npm cache clean --force                  0.0s
+ => CACHED [8/8] COPY . .                                     0.0s
+ => exporting to image                                        0.1s
+ => => exporting layers                                       0.0s
+ => => writing image sha256:2a29932e436004cbb99bf96247819fe7  0.0s
+ => => naming to docker.io/library/test                       0.0s
+
+C:\Users\HIDIR\docker\dockerfile-assignment-1 (main -> origin)
+λ docker images
+REPOSITORY      TAG       IMAGE ID       CREATED          SIZE
+test            latest    2a29932e4360   22 minutes ago   71MB
+<none>          <none>    cc0cdb8989bb   22 minutes ago   71MB
+nginx-html      ce        a2b7ab64399a   5 hours ago      133MB
+nginx-html      latest    a2b7ab64399a   5 hours ago      133MB
+customnginx     latest    9983b94cc85d   5 hours ago      108MB
+ce/nginx        latest    0c287fc7786c   5 hours ago      108MB
+sample1         latest    0c287fc7786c   5 hours ago      108MB
+mysql           latest    c8562eaf9d81   4 days ago       546MB
+mongo           latest    29d9c9b800fa   8 days ago       493MB
+nginx           latest    f6d0b4767a6c   11 days ago      133MB
+httpd           latest    683a7aad17d3   11 days ago      138MB
+ubuntu          latest    f643c72bc252   8 weeks ago      72.9MB
+elasticsearch   2         5e9d896dc62c   2 years ago      479MB
+
+C:\Users\HIDIR\docker\dockerfile-assignment-1 (main -> origin)
+λ docker container run -p 80:3000 test
+GET / 200 762.101 ms - 304
+GET /stylesheets/style.css 200 112.540 ms - 119
+GET /images/picard.gif 200 143.098 ms - 417700
+GET / 304 53.077 ms - -
+GET /stylesheets/style.css 304 7.216 ms - -
+GET /images/picard.gif 304 3.168 ms - -
+GET / 304 153.653 ms - -
+GET /stylesheets/style.css 304 4.006 ms - -
+GET /images/picard.gif 304 3.569 ms - -

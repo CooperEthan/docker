@@ -1,0 +1,44 @@
+Ubuntu
+
+λ docker container run -it -d --name ubuntu ubuntu:14.04 bash
+
+λ docker container exec -it ubuntu bash
+
+root@f2bfc848cbae:/# apt-get update
+
+root@f2bfc848cbae:/# curl google.com
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.com/">here</A>.
+</BODY></HTML>
+
+
+root@f2bfc848cbae:/# curl --version
+curl 7.35.0 (x86_64-pc-linux-gnu) libcurl/7.35.0 OpenSSL/1.0.1f zlib/1.2.8 libidn/1.28 librtmp/2.3
+
+
+CENTOS
+
+λ docker container run -it -d --name centos centos:7 bash
+
+λ docker container exec -it centos bash
+[root@0df8054f099c /]# curl google.com
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.com/">here</A>.
+</BODY></HTML>
+
+[root@0df8054f099c /]# curl --version
+curl 7.29.0 (x86_64-redhat-linux-gnu) libcurl/7.29.0 NSS/3.44 zlib/1.2.7 libidn/1.28 libssh2/1.8.0
+
+[root@0df8054f099c /]# yum update
+
+
+
+
+
+

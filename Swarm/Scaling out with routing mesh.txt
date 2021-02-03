@@ -1,0 +1,66 @@
+- let s say we run multi node application.( 3 node. node1 , node2, node3)
+
+- let s say we create elasticsearch container across 3 nodes
+
+ docker service create --name search --replicas 3 -p 9200:9200 elasticsearch:2
+
+ $ docker node ls
+ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+j96ir8h92tnc44kvzhcjmbcb9 *   node1      Ready     Active         Leader
+     20.10.0
+dme5p5f1isz9nel38oqym5el5     node2      Ready     Active         Reachable
+     20.10.0
+2hhmdin8fhz41hfd18891ybth     node3      Ready     Active         Reachable
+     20.10.0
+
+we do --> docker node update --role manager noe2 and node3 to give them manager status. so they are reachable.
+
+- then every time we run curl localhost:9200 we will see different node responding the request. that shows load balancing across nodes.
+
+- [node1] (local) root@192.168.0.18 ~
+$ curl localhost:9200
+{
+  "name" : "Slapstick",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "k0FRy_hxTBW5jOApQgtrNg",
+  "version" : {
+    "number" : "2.4.6",
+    "build_hash" : "5376dca9f70f3abef96a77f4bb22720ace8240fd",
+    "build_timestamp" : "2017-07-18T12:17:44Z",
+    "build_snapshot" : false,
+    "lucene_version" : "5.5.4"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+[node1] (local) root@192.168.0.18 ~
+$ curl localhost:9200
+{
+  "name" : "Ecstasy",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "fw9RuQlpSk-_albJ5b_GNQ",
+  "version" : {
+    "number" : "2.4.6",
+    "build_hash" : "5376dca9f70f3abef96a77f4bb22720ace8240fd",
+    "build_timestamp" : "2017-07-18T12:17:44Z",
+    "build_snapshot" : false,
+    "lucene_version" : "5.5.4"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+[node1] (local) root@192.168.0.18 ~
+$ curl localhost:9200
+{
+  "name" : "Avarrish",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "wch2N1ZpSQu0XTyInOkSpA",
+  "version" : {
+    "number" : "2.4.6",
+    "build_hash" : "5376dca9f70f3abef96a77f4bb22720ace8240fd",
+    "build_timestamp" : "2017-07-18T12:17:44Z",
+    "build_snapshot" : false,
+    "lucene_version" : "5.5.4"
+  },
+  "tagline" : "You Know, for Search"
+}

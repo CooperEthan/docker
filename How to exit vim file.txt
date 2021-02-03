@@ -1,0 +1,5 @@
+- esc :wq enter
+	this one saves and exits
+
+- esc : q! enter
+  this one exits without saving
